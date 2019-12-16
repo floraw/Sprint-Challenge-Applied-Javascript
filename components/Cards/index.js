@@ -49,20 +49,13 @@ function createCard(headline, photo, name) {
 axios.get('https://lambda-times-backend.herokuapp.com/articles')
     .then(response => {
         let myData = Object.values(response.data.articles);
-        console.log(myData);
-
         let cardContainer = document.querySelector(".cards-container");
-
-        let cards = [];
 
         myData.forEach(array => {
             array.forEach(card => {
                 let newCard = createCard(card.headline, card.authorPhoto, card.authorName);
-                cards.push(newCard);
+                cardContainer.appendChild(newCard);
             })
-        })
-        cards.forEach(card => {
-            cardContainer.appendChild(card);
         })
 
     })
